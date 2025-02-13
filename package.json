@@ -1,6 +1,7 @@
 {
   "name": "fika",
   "version": "1.0.0",
+  "type": "module",
   "description": "Node server project",
   "main": "index.js",
   "scripts": {
