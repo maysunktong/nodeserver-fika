@@ -2,7 +2,7 @@ import fs from "fs";
 import http from "http";
 import url from "url";
 
-const PORT = 3007;
+const PORT = process.env.PORT || 3007;
 
 http
   .createServer((req, res) => {
