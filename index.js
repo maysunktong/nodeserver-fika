@@ -25,7 +25,8 @@ http
       represents warmth, hospitality, and the Swedish love for slowing down and
       enjoying life's small pleasures.</div>`);
     } else if (fullpath.path.includes("buns")) {
-      fs.readFile("./data/buns.js", (err, data) => {
+      res.write("<h1>Our Buns</h1>");
+      fs.readFile("./data/menu.js", (err, data) => {
         if (err) {
           res.write("<p>Something went wrong</p>");
         } else {
@@ -69,6 +70,13 @@ http
       }
     } else if (fullpath.path.includes("coffee")) {
       res.write("<h1>Our Coffee</h1>");
+      fs.readFile("./data/menu.js", (err, data) => {
+        if (err) {
+          res.write("<p>Something went wrong</p>");
+        } else {
+          res.write(`<div>${data}</div>`);
+        }
+      });
       fs.readFile("./data/coffee.js", (err, data) => {
         if (err) {
           res.write("<p>Something went wrong</p>");
@@ -78,13 +86,25 @@ http
       });
     } else if (fullpath.path.includes("sandwiches")) {
       res.write("<h1>Our Sandwiches</h1>");
-      fs.readFile("./data/home.js", (err, data) => {
+      fs.readFile("./data/menu.js", (err, data) => {
         if (err) {
           res.write("<p>Something went wrong</p>");
         } else {
           res.write(`<div>${data}</div>`);
+          res.write("<a href='./sandwiches?name=sandwiches'>Sandwiches</a>");
         }
       });
+
+      if (queries.name === "sandwiches") {
+        fs.readFile("./data/sandwiches.txt", (err, data) => {
+          if (err) {
+            res.write("<p>Something went wrong</p>");
+          } else {
+            res.write(`<div>${data}</div>`);     
+          }
+        });
+      }
+      
     } else {
       fs.readFile("./data/404.js", (err, data) => {
         if (err) {
